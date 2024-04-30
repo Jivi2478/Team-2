@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Spring Boot CSV file Application</title>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+
+<div class="upload-container">
+    <div class="upload-header">
+        <h2>Import the CSV file into Mysql Database using Spring Boot Application</h2>
+    </div>
+    <div class="upload-content">
+        <div class="single-upload">
+            <h3>Upload the CSV File </h3>
+            <form id="singleUploadForm" name="singleUploadForm" enctype="multipart/form-data">
+                <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
+                <button type="button" class="primary submit-btn" onclick="uploadFile()">Submit</button>
+            </form>
+            <div class="upload-response">
+                <div id="singleFileUploadError"></div>
+                <div id="singleFileUploadSuccess"></div>
+            </div>
+        </div>
+        <!-- Input field for entering ID -->
+        <input type="text" id="id" placeholder="Enter ID">
+        <button id="generatePDFBtn" class="primary generate-pdf-btn" style="display: none;" onclick="generatePDF()">Generate PDF</button>
+    </div>
+</div>
+<script>
+    function uploadFile() {
+        var fileInput = document.getElementById('singleFileUploadInput');
+        var file = fileInput.files[0];
+        var formData = new FormData();
+        formData.append('file', file);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:8080/api/csv/upload', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                document.getElementById('singleFileUploadSuccess').innerText = 'File uploaded successfully!';
+                document.getElementById('generatePDFBtn').style.display = 'block';
+            } else {
+                document.getElementById('singleFileUploadError').innerText = 'Error uploading file.';
+            }
+        };
+        xhr.send(formData);
+    }
+
+    function generatePDF() {
+        var id = document.getElementById('id').value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:8080/generate/pdf2?id=' + id, true);
+        xhr.responseType = 'blob';
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var blob = new Blob([xhr.response], { type: 'application/pdf' });
+                var url = window.URL.createObjectURL(blob);
+                var link = document.createElement('a');
+                link.href = url;
+                link.download = 'generated_pdf_' + id + '.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                document.getElementById('pdfResult').innerText = 'Error generating PDF.';
+            }
+        };
+        xhr.send();
+    }
+</script>
+</body>
+</html>
+

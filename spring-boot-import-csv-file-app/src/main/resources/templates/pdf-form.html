@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Offer Letter</title>
+
+	
+
+</head>
+
+<body>
+
+	<h1 style="text-align: center;">Offer Letter</h1>
+
+	<div style="text-align: left;">
+
+	        <img src="LOGO EY.jpg" alt="Company Logo" style="width: 150px;">
+
+	    </div>
+
+	    <br>
+
+	    <div style="text-align: left;">
+
+	        01/05/2024
+
+	    </div>
+
+	    <br>
+
+	    <div>
+
+	        <p th:text="${title}"></p>
+
+	        <p>Olympia National Tower</p>
+
+	        <p>Guindy</p>
+
+	        <p>Chennai-600009</p>
+
+	    </div>
+
+	    <br>
+
+	    <div>
+
+	        <p th:text="'Dear '+${title}+','"></p>
+
+	        
+
+	        <p th:text="'We are delighted to extend this offer of employment for the position of ' + ${designation} + ' at EY GDS. After careful consideration of your qualifications and experience, we are confident that you will make a valuable addition to our team.'"></p>
+
+	        <br>
+
+	        <p th:text="'Position Title: '+${designation}"></p>
+
+	        <p>Location: Chennai</p>
+
+	
+
+	
+
+	        <br>
+
+	        <p>We believe that your skills and experience align perfectly with what we are looking for in this role. Your dedication and expertise will contribute significantly to our company's success.</p>
+
+	        
+
+	        <p>Please review this offer carefully. If you choose to accept, please sign and return this letter by 30/06/2024.</p>
+
+	        
+
+	        <p>Should you have any questions or need further clarification, please don't hesitate to contact HR Team at hrteam@ey.com</p>
+
+	        
+
+	        <p>We are excited about the opportunity to work together and are looking forward to your positive response.</p>
+
+			
+
+			<p>As you embark on this exciting journey with us, know that your talent and dedication will shape our shared success. We eagerly await your acceptance, confident that together, we’ll achieve remarkable milestones.</p>
+
+	        <br>
+
+	        <p>Warm regards,</p>
+
+	        
+
+	        <p>Samuel</p>
+
+	        <p>HR Manager</p>
+
+	        <p>EY GDS</p>
+
+	        <p>hrteam@ey.com</p>
+
+	    </div>
+
+    
+
+
+
+</body>
+
+</html>

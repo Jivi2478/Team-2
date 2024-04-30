@@ -1,0 +1,25 @@
+
+      .homegenbtn {
+        display: block;
+        text-align: center;
+        /* color: #ffffff; */
+        padding: 20px 40px;
+        /* padding: 15px 300px; */
+        border-radius: 5px;
+        
+      }
+
+      .mainhome{
+        padding-top: 200px;
+      }
+
+      .hometitle{
+        text-align: center;
+      }
+      .homesub{
+        text-align: center;
+      }
+
+      a{
+        text-decoration: none;
+      }
